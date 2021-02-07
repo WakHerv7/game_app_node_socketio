@@ -1,0 +1,47 @@
+database
+    collection 0
+        document 0
+        document 1
+        document 2
+        ...
+    collection 1
+        document 0
+        document 1
+        document 2
+        ...
+
+myGame
+    account
+        {username:"bob", password:"pass"}
+        {username:"bob2", password:"pass2"}
+        {username:"bob3", password:"pass3"}
+    progress
+        {username:"bob", level:123, questComplete:['myQuest','myQuest2']}
+        {username:"bob2", level:2, questComplete:['myQuest','myQuest2']}
+
+
+create database:
+    use <DATABASE_NAME>
+    --> use myGame
+
+create collection:
+    --> db.createCollection("account");
+    --> db.createCollection("progress");
+
+add document:
+    --> db.account.insert({username:"bob", password:"pass"});
+    --> db.account.insert({username:"bob2", password:"pass2"});
+    --> db.progress.insert({username:"bob", level:123, questComplete:['myQuest','myQuest2']});
+
+read document:
+    db.<COLLECTION>.find(<MUST WATCH>);
+    --> db.account.find({username:"bob"});
+    --> db.progress.find({username:"bob"});
+
+    db.<COLLECTION>.find(<MUST WATCH>,<TO RETRIEVE>);
+    --> db.account.find({username:"bob"}, {level:1});
+
+update document:
+    db.<COLLECTION>.update(<MUST MATCH>, {$set:<NEW VALUES>});
+    --> db.progress.update( {username:"bob"}, { $set: {level:99} } );
+
